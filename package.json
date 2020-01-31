@@ -1,0 +1,99 @@
+{
+  "name": "npm-plus",
+  "displayName": "NPM Plus",
+  "version": "1.0.0",
+  "description": "Enhance NPM with some useful features.",
+  "main": "index.js",
+  "repository": "git@github.com:fjc0k/npm-plus.git",
+  "author": "Jay Fong <fjc0kb@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -n poi,manifest 'poi --watch -r ts-node/register' 'yarn generate-manifest'",
+    "build": "poi --prod -r ts-node/register && yarn generate-manifest-only && del ./dist/*.html ./dist/runtime*.js && renamer --find '.chunk' --replace '' ./dist/* && bestzip archive.zip dist/*",
+    "generate-manifest": "nodemon -w ./package.json -w ./scripts/generate-manifest.ts --exec 'yarn generate-manifest-only'",
+    "generate-manifest-only": "ts-node -T -P tsconfig.scripts.json ./scripts/generate-manifest.ts"
+  },
+  "chromeExtensionManifest": {
+    "name": "-",
+    "description": "-",
+    "version": "-",
+    "manifest_version": 2,
+    "icons": {
+      "128": "logo.png"
+    },
+    "permissions": [
+      "*://*.npmjs.com/",
+      "*://*.unpkg.com/"
+    ],
+    "background": {
+      "scripts": [
+        "chunk-vendors.js",
+        "background.js"
+      ]
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "*://*.iconfont.cn/manage/index*"
+        ],
+        "js": [
+          "pngquant.js",
+          "assets/Common.js",
+          "assets/ManageProject.js"
+        ],
+        "css": [
+          "assets/Common.css",
+          "assets/ManageProject.css"
+        ]
+      },
+      {
+        "matches": [
+          "*://*.iconfont.cn/*"
+        ],
+        "js": [
+          "assets/Common.js",
+          "assets/CollectionDetail.js"
+        ],
+        "css": [
+          "assets/Common.css",
+          "assets/CollectionDetail.css"
+        ]
+      }
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "io"
+  },
+  "eslintIgnore": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/chrome": "^0.0.93",
+    "@types/fs-extra": "^8.0.1",
+    "@types/poi": "^12.5.0",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "bestzip": "^2.1.5",
+    "concurrently": "^5.1.0",
+    "del-cli": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-io": "^0.8.2",
+    "fs-extra": "^8.1.0",
+    "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
+    "poi": "^12.7.5",
+    "renamer": "^1.1.4",
+    "sass-loader": "^8.0.2",
+    "standard-version": "^7.1.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "antd": "^3.26.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-use": "^13.22.4",
+    "umi-request": "^1.2.18"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "NPM Plus",
+  "description": "Enhance NPM with some useful features.",
+  "version": "1.4.4",
+  "manifest_version": 2,
+  "icons": {
+    "128": "logo.png"
+  },
+  "permissions": [
+    "*://*.npmjs.com/",
+    "*://*.unpkg.com/"
+  ],
+  "background": {
+    "scripts": [
+      "assets/Common.js",
+      "assets/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.iconfont.cn/manage/index*"
+      ],
+      "js": [
+        "pngquant.js",
+        "assets/Common.js",
+        "assets/ManageProject.js"
+      ],
+      "css": [
+        "assets/Common.css",
+        "assets/ManageProject.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.iconfont.cn/*"
+      ],
+      "js": [
+        "assets/Common.js",
+        "assets/CollectionDetail.js"
+      ],
+      "css": [
+        "assets/Common.css",
+        "assets/CollectionDetail.css"
+      ]
+    }
+  ]
+}
