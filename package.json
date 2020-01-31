@@ -8,8 +8,10 @@
   "author": "Jay Fong <fjc0kb@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently -n poi,manifest 'poi --watch -r ts-node/register' 'yarn generate-manifest'",
-    "build": "poi --prod -r ts-node/register && yarn generate-manifest-only && del ./dist/*.html ./dist/runtime*.js && renamer --find '.chunk' --replace '' ./dist/* && bestzip archive.zip dist/*",
+    "dev": "cross-env GENERATE_ENV=dev concurrently -n assets,manifest 'yarn generate-assets' 'yarn generate-manifest'",
+    "build": "yarn generate-assets-only && yarn generate-manifest-only && bestzip archive.zip dist/*",
+    "generate-assets": "nodemon -w ./src -e ts,tsx,scss --exec 'yarn generate-assets-only'",
+    "generate-assets-only": "poi --prod -r ts-node/register && del ./dist/*.html && renamer --force --find '.chunk' --replace '' ./dist/* && renamer --force --find '~' --replace '.' ./dist/*",
     "generate-manifest": "nodemon -w ./package.json -w ./scripts/generate-manifest.ts --exec 'yarn generate-manifest-only'",
     "generate-manifest-only": "ts-node -T -P tsconfig.scripts.json ./scripts/generate-manifest.ts"
   },
@@ -28,35 +30,19 @@
     "background": {
       "scripts": [
         "chunk-vendors.js",
-        "background.js"
+        "background.js",
+        "runtime.background.js"
       ]
     },
     "content_scripts": [
       {
         "matches": [
-          "*://*.iconfont.cn/manage/index*"
+          "*://*.npmjs.com/package/*"
         ],
         "js": [
-          "pngquant.js",
-          "assets/Common.js",
-          "assets/ManageProject.js"
-        ],
-        "css": [
-          "assets/Common.css",
-          "assets/ManageProject.css"
-        ]
-      },
-      {
-        "matches": [
-          "*://*.iconfont.cn/*"
-        ],
-        "js": [
-          "assets/Common.js",
-          "assets/CollectionDetail.js"
-        ],
-        "css": [
-          "assets/Common.css",
-          "assets/CollectionDetail.css"
+          "chunk-vendors.js",
+          "npm.js",
+          "runtime.npm.js"
         ]
       }
     ]
@@ -76,6 +62,7 @@
     "@types/react-dom": "^16.9.5",
     "bestzip": "^2.1.5",
     "concurrently": "^5.1.0",
+    "cross-env": "^7.0.0",
     "del-cli": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-io": "^0.8.2",

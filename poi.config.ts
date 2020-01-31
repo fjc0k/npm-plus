@@ -1,18 +1,20 @@
 import {Config} from 'poi'
 
+const isDev = process.env.GENERATE_ENV === 'dev'
+
 const config: Config = {
   pages: {
     background: {
       entry: './src/background.ts',
     },
-    api: {
-      entry: './src/api.ts',
+    npm: {
+      entry: './src/npm.tsx',
     },
   },
   output: {
     dir: './dist',
     sourceMap: false,
-    clean: true,
+    clean: !isDev,
     fileNames: {
       js: '[name].js',
       css: '[name].css',
