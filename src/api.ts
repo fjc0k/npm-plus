@@ -1,3 +1,4 @@
+import {getTypesPackageName} from './utils'
 import {IBackgroundRequest, IRequestOptions, IRequestReturn} from './background'
 import {result} from 'vtils'
 
@@ -27,17 +28,17 @@ export enum PackageTypesState {
 export async function detectPackageTypesState(packageName: string): Promise<PackageTypesState> {
   const [getPackageInfoErr, getPackageInfoRes] = await result(request<{
     types?: string,
-    typing?: string,
+    typings?: string,
   }>({
     method: 'GET',
     url: `https://unpkg.com/${packageName}/package.json`,
   }))
-  if (!getPackageInfoErr && (getPackageInfoRes.types || getPackageInfoRes.typing)) {
+  if (!getPackageInfoErr && (getPackageInfoRes.types || getPackageInfoRes.typings)) {
     return PackageTypesState.Included
   }
   const [getTypesPackageErr] = await result(request({
     method: 'GET',
-    url: `https://www.npmjs.com/package/@types/${packageName}`,
+    url: `https://www.npmjs.com/package/${getTypesPackageName(packageName)}`,
   }))
   return getTypesPackageErr
     ? PackageTypesState.Missing

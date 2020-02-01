@@ -1,15 +1,45 @@
+@import '~@vtils/scss';
+
 body {
   display: flex;
 }
 
 .widget {
   flex-shrink: 0;
-  width: 180px;
+  width: 200px;
   height: 100vh;
   background: #efefef;
   padding: 10px;
   box-sizing: border-box;
   overflow: auto;
+
+  .main {
+    .title {
+      max-width: 100%;
+      @include ellipsis;
+    }
+
+    .install {
+      .item {
+        word-break: break-all;
+
+        &:not(:first-child) {
+          margin-top: 6px;
+        }
+
+        &.code {
+          font-size: 85%;
+          padding: 0.2em 0.4em 0.1em;
+          background: rgba(0, 0, 0, 0.06);
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgba(0, 0, 0, 0.06);
+          border-image: initial;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
 
   + :global(#app) {
     flex-grow: 1;

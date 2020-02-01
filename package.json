@@ -24,6 +24,7 @@
       "128": "logo.png"
     },
     "permissions": [
+      "storage",
       "*://*.npmjs.com/",
       "*://*.unpkg.com/"
     ],
@@ -82,6 +83,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "@vtils/scss": "^2.53.0",
     "antd": "^4.0.0-rc.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

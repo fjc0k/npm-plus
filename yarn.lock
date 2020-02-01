@@ -1251,6 +1251,11 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+"@vtils/scss@^2.53.0":
+  version "2.53.0"
+  resolved "https://registry.yarnpkg.com/@vtils/scss/-/scss-2.53.0.tgz#122daed452a7f7cb3ca1a8951524ffa0a2910cff"
+  integrity sha512-PSC12nZFC45vhVzXdXaDz5+cDl2aNmWze9nFWIzXDyS20Xhop5LQp7ZAVdC5YjlkOhlUjmps848mt0OrfkXS9Q==
+
 "@vue/component-compiler-utils@^3.1.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-3.1.1.tgz#d4ef8f80292674044ad6211e336a302e4d2a6575"
