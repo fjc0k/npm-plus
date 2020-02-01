@@ -5,6 +5,11 @@ export type IRequestOptions = RequestOptionsInit & {
   method: 'GET' | 'POST',
 }
 
+export type IRequestReturn = {
+  error: boolean,
+  response: any,
+}
+
 export type IBackgroundRequest = {
   type: 'httpRequest',
   options: IRequestOptions,
@@ -19,7 +24,16 @@ chrome.runtime.onMessage.addListener(
           getResponse: false,
           ...request.options,
         },
-      ).then(sendResponse)
+      ).then(
+        res => sendResponse({
+          error: false,
+          response: res,
+        } as IRequestReturn),
+        err => sendResponse({
+          error: true,
+          response: err && err.response,
+        } as IRequestReturn),
+      )
     }
     return true
   },

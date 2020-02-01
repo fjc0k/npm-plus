@@ -4,6 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "newLine": "LF",
+    "jsx": "preserve",
     "strict": true,
     "removeComments": true,
     "esModuleInterop": true,

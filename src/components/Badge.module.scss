@@ -1,0 +1,53 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  color: #FFF;
+  border-radius: 3px;
+  overflow: hidden;
+
+  .label {
+    background-color: #5b5b5b;
+    padding: 2px 4px;
+  }
+
+  .value {
+    padding: 2px 4px;
+
+    &.black {
+      background-color: #5b5b5b;
+    }
+
+    &.blue {
+      background-color: #0f80c0;
+    }
+
+    &.brightgreen {
+      background-color: #4cc61f;
+    }
+
+    &.red {
+      background-color: #d7624b;
+    }
+
+    &.orange {
+      background-color: #f27e3f;
+    }
+
+    &.green {
+      background-color: #96c40f;
+    }
+
+    &.yellowgreen {
+      background-color: #a1a328;
+    }
+
+    &.yellow {
+      background-color: #d6ae22;
+    }
+
+    &.lightgrey {
+      background-color: #9e9e9e;
+    }
+  }
+}

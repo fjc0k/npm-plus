@@ -1,0 +1,19 @@
+body {
+  display: flex;
+}
+
+.widget {
+  flex-shrink: 0;
+  width: 180px;
+  height: 100vh;
+  background: #efefef;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  + :global(#app) {
+    flex-grow: 1;
+    height: 100vh;
+    overflow: auto;
+  }
+}

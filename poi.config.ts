@@ -15,6 +15,7 @@ const config: Config = {
     dir: './dist',
     sourceMap: false,
     clean: !isDev,
+    minimize: !isDev,
     fileNames: {
       js: '[name].js',
       css: '[name].css',
