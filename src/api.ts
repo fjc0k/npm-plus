@@ -27,14 +27,27 @@ export enum PackageTypesState {
 
 export async function detectPackageTypesState(packageName: string): Promise<PackageTypesState> {
   const [getPackageInfoErr, getPackageInfoRes] = await result(request<{
+    main?: string,
     types?: string,
     typings?: string,
   }>({
     method: 'GET',
     url: `https://unpkg.com/${packageName}/package.json`,
   }))
-  if (!getPackageInfoErr && (getPackageInfoRes.types || getPackageInfoRes.typings)) {
-    return PackageTypesState.Included
+  if (!getPackageInfoErr) {
+    if (getPackageInfoRes.types || getPackageInfoRes.typings) {
+      return PackageTypesState.Included
+    }
+    if (getPackageInfoRes.main) {
+      const main = getPackageInfoRes.main.replace(/(^\/+|\.[^.]+$)/g, '')
+      const [getMainTypesErr] = await result(request({
+        method: 'GET',
+        url: `https://unpkg.com/${packageName}/${main}.d.ts`,
+      }))
+      if (!getMainTypesErr) {
+        return PackageTypesState.Included
+      }
+    }
   }
   const [getTypesPackageErr] = await result(request({
     method: 'GET',
