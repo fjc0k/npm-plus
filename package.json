@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "cross-env GENERATE_ENV=dev concurrently -n assets,manifest 'yarn generate-assets' 'yarn generate-manifest'",
     "build": "yarn generate-assets-only && yarn generate-manifest-only && bestzip archive.zip dist/*",
+    "release": "standard-version -a && git push --follow-tags origin master && yarn build && open-cli https://chrome.google.com/webstore/devconsole",
     "generate-assets": "nodemon -w ./src -e ts,tsx,scss --exec 'yarn generate-assets-only'",
     "generate-assets-only": "poi --prod -r ts-node/register && del ./dist/*.html && renamer --force --find '.chunk' --replace '' ./dist/* && renamer --force --find '~' --replace '.' ./dist/*",
     "generate-manifest": "nodemon -w ./package.json -w ./scripts/generate-manifest.ts --exec 'yarn generate-manifest-only'",
@@ -85,6 +86,7 @@
   "dependencies": {
     "@vtils/scss": "^2.53.0",
     "antd": "^4.0.0-rc.3",
+    "open-cli": "^5.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-use": "^13.22.4",
