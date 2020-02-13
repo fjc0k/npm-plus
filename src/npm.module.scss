@@ -13,13 +13,18 @@ body {
   box-sizing: border-box;
   overflow: auto;
 
+  .loading {
+    margin-top: 50px;
+    text-align: center;
+  }
+
   .main {
     .title {
       max-width: 100%;
       @include ellipsis;
     }
 
-    .install {
+    .card {
       .item {
         word-break: break-all;
 
@@ -37,6 +42,32 @@ body {
           border-image: initial;
           border-radius: 3px;
         }
+
+        :global {
+          .ant-tag {
+            cursor: pointer;
+
+            &:not(.ant-tag-checkable-checked) {
+              border: 1px dashed #ccc;
+            }
+          }
+
+        }
+      }
+
+      .action {
+        &:not(:first-child) {
+          margin-top: 12px;
+        }
+      }
+    }
+
+    .github {
+      text-align: center;
+
+      a {
+        font-size: 15px;
+        color: #999;
       }
     }
   }
