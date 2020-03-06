@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/fjc0k/npm-plus/compare/v1.1.0...v1.1.1) (2020-03-06)
+
+
+### Bug Fixes
+
+* improve types detection (close: [#1](https://github.com/fjc0k/npm-plus/issues/1)) ([9f0697d](https://github.com/fjc0k/npm-plus/commit/9f0697dfd75936cbbb7c8c221c1b847ab60e4d2a))
+
 ## 1.1.0 (2020-02-13)
 
 
