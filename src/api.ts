@@ -39,7 +39,9 @@ export async function detectPackageTypesState(packageName: string): Promise<Pack
       return PackageTypesState.Included
     }
     if (getPackageInfoRes.main) {
-      const main = getPackageInfoRes.main.replace(/(^\/+|\.[^.]+$)/g, '')
+      const main = getPackageInfoRes.main
+        .replace(/^\.?\/+/, '')
+        .replace(/\.m?js$/i, '')
       const [getMainTypesErr] = await result(request({
         method: 'GET',
         url: `https://unpkg.com/${packageName}/${main}.d.ts`,
