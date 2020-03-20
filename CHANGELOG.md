@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/fjc0k/npm-plus/compare/v1.1.1...v1.1.2) (2020-03-20)
+
+
+### Bug Fixes
+
+* remove the question mark from location.href ([2eac6fa](https://github.com/fjc0k/npm-plus/commit/2eac6fa4846437aeec81da79b8c608c5b30b7ef2))
+
 ### [1.1.1](https://github.com/fjc0k/npm-plus/compare/v1.1.0...v1.1.1) (2020-03-06)
 
 
