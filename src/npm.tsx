@@ -14,7 +14,10 @@ function Widget() {
     return state.clients.find(item => item.name === state.client)!
   }, [state.clients, state.client])
   const packageName = useMemo(() => {
-    return location.href.split('#')[0].match(/package\/(@[^/]+\/[^/]+|[^/]+)/)![1]
+    return location.href
+      .replace(/#/g, '?')
+      .split('?')[0]
+      .match(/package\/(@[^/]+\/[^/]+|[^/]+)/)![1]
   }, [])
   const [packageTypesState, setPackageTypesState] = useState<PackageTypesState>(PackageTypesState.Pending)
 
