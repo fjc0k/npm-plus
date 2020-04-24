@@ -40,6 +40,11 @@ const getInitialState = (): IState => ({
       installCommand: 'add',
       devCommand: '-D',
     },
+    {
+      name: 'cpnpm',
+      installCommand: 'add',
+      devCommand: '-D',
+    },
   ],
   client: 'npm',
 })
