@@ -1,7 +1,7 @@
 {
   "name": "npm-plus",
   "displayName": "NPM Plus",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Enhance NPM with some useful features.",
   "main": "index.js",
   "repository": "git@github.com:fjc0k/npm-plus.git",

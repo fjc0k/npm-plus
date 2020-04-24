@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/fjc0k/npm-plus/compare/v1.1.2...v1.2.0) (2020-04-24)
+
+
+### Features
+
+* add cpnpm package manager ([a6d3c83](https://github.com/fjc0k/npm-plus/commit/a6d3c83b709004251dae6155a1e070ce55e5ff86))
+
 ### [1.1.2](https://github.com/fjc0k/npm-plus/compare/v1.1.1...v1.1.2) (2020-03-20)
 
 
